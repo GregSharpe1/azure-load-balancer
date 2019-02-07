@@ -1,0 +1,9 @@
+Host *
+  ForwardAgent yes
+  IdentityFile ~/.ssh/azure/azure-playground
+  User greg
+  ControlPersist 2h
+
+# Anything within the 10.
+Host 10.0.2.*
+  ProxyCommand ssh -F /dev/null -i ~/.ssh/azure/azure-playground -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l greg -q $(terraform output -state=terraform/terraform.tfstate bastion_pulic_ip_address) -W %h:%p
