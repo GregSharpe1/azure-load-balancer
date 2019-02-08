@@ -1,4 +1,4 @@
-resource "azurerm_virtual_network" "dog_application_virtual_network" {
+resource "azurerm_virtual_network" "virtual_network" {
   name                = "${var.virtual_network_name}"
   location            = "${var.virtual_network_location}"
   resource_group_name = "${var.resource_group_name}"
