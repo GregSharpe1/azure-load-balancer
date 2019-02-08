@@ -1,9 +1,21 @@
 Host *
+  IdentityFile azure-playground
   ForwardAgent yes
-  IdentityFile ~/.ssh/azure/azure-playground
+  ForwardX11 no
+  ConnectionAttempts 3
+  ConnectTimeout 60
+  TCPKeepAlive yes
+  ServerAliveCountMax 6
+  ServerAliveInterval 30
+  ControlMaster auto
+  ControlPath /tmp/.sshC.%u.%h.%p.%r
+  ControlPersist 1h
+  # This is a cloud-based platform, with hosts rebuilt often. As such, SSH
+  # server keys are expected to change often and should not be saved
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
   User greg
-  ControlPersist 2h
 
-# Anything within the 10.
+# Anything within the 10.0.2.0/24 range (AKA the Application servers) they don't have DNS records yet
 Host 10.0.2.*
-  ProxyCommand ssh -F /dev/null -i ~/.ssh/azure/azure-playground -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l greg -q $(terraform output -state=terraform/terraform.tfstate bastion_pulic_ip_address) -W %h:%p
+  ProxyCommand ssh -F /dev/null -i azure-playground -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l greg -q $(terraform output -state=terraform/terraform.tfstate bastion_pulic_ip_address) -W %h:%p
