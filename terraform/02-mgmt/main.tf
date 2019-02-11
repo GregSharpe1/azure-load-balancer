@@ -31,10 +31,11 @@ module "public_ip" {
 }
 
 module "network_interface" {
-  source = "../modules/networking/network-interface"
+  source = "../modules/networking/network-interface-public-ip"
   network_interface_name = "bastion_network_interface"
   resource_group_name = "${module.resource_group.resource_group_name}"
   resource_group_location = "${module.resource_group.resource_group_location}"
+  public_ip_id = "${module.public_ip.public_ip_id}"
   subnet_id = "${module.subnet.subnet_id}"
 }
 
