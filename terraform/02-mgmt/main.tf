@@ -37,3 +37,14 @@ module "network_interface" {
   resource_group_location = "${module.resource_group.resource_group_location}"
   subnet_id = "${module.subnet.subnet_id}"
 }
+
+module "bastion_instance" {
+  source = "../modules/compute/instance"
+  instance_name = "bastion"
+  resource_group_name = "${module.resource_group.resource_group_name}"
+  resource_group_location = "${module.resource_group.resource_group_location}"
+  network_interface_id = "${module.network_interface.network_interface_id}"
+  os_profile_computer_name = "bastion-profile"
+  os_profile_admin_username = "greg"
+  os_profile_ssh_key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYmtUL1bwKmnVDBzzSZcmpWaNZSeXI8Sqk7xUVB86XAwss1a3QZobu1X9CXK5z1dCyQCJMyG6+5Ov2wb+lMhYvV3Ql0qHmxZ9sIdm4p2S0FtP0yzZ/Ia7ZoGrbIaVISrs8ivZnADv7Vqho595DxMLEn9CzQq/Cd0WVYd6e70y4DaXQF8ywSSvom6VuRF7oV9nHC4rszZMOz8nkV4aYXgUaeneQEdmrkcx4uzwlMZ2cfroTZOOM8mIYi7/fdUgd4TFJzmruW7gHaPz1wQPnywXE5rLGua6VUhCPmInX1zGahQ4aS4HdpIZZw2kWs7/S7yPB3jL5n6P6OgqU5lyu0gEf Azure Playground"
+}
