@@ -7,5 +7,6 @@ resource "azurerm_network_interface" "network_interface" {
     name                          = "${var.network_interface_name}_config"
     subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "dynamic"
+    public_ip_address_id          = "${var.public_ip_id}"
   }
 }
