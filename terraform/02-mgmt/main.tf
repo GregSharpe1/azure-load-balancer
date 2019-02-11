@@ -29,3 +29,11 @@ module "public_ip" {
   resource_group_name = "${module.resource_group.resource_group_name}"
   resource_group_location = "${module.resource_group.resource_group_location}"
 }
+
+module "network_interface" {
+  source = "../modules/networking/network-interface"
+  network_interface_name = "bastion_network_interface"
+  resource_group_name = "${module.resource_group.resource_group_name}"
+  resource_group_location = "${module.resource_group.resource_group_location}"
+  subnet_id = "${module.subnet.subnet_id}"
+}
