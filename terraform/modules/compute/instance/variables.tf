@@ -52,7 +52,7 @@ variable "storage_caching_option" {
 
 variable "storage_creating_option" {
   description = "What creating option would you like?"
-  default     = "FromImage"
+  default     = "Attach" # Issue when attempting to "move" a VM into an availability set. See: https://github.com/hashicorp/terraform/issues/14002
 }
 
 variable "storage_managed_disk_type" {
