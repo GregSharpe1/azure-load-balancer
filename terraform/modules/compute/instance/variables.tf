@@ -14,6 +14,10 @@ variable "network_interface_id" {
   description = "ID of the required network interface"
 }
 
+variable "availability_set_id" {
+  description = "ID of the created availability set"
+}
+
 variable "os_profile_computer_name" {
   description = "OS profile name"
 }
@@ -38,20 +42,20 @@ variable "instance_tags" {
 # Storage options (all defaulted)
 variable "instance_vm_size" {
   description = "VM Size"
-  default = "Standard_DS1_v2"
+  default     = "Standard_DS1_v2"
 }
 
 variable "storage_caching_option" {
   description = "What caching option would you like?"
-  default = "ReadWrite"
+  default     = "ReadWrite"
 }
 
 variable "storage_creating_option" {
   description = "What creating option would you like?"
-  default = "FromImage"
+  default     = "FromImage"
 }
 
 variable "storage_managed_disk_type" {
   description = "Managed disk storage type"
-  default = "Standard_LRS"
+  default     = "Standard_LRS"
 }

@@ -14,7 +14,6 @@ variable "public_ip_id" {
   description = "Public IP address id"
 }
 
-
 variable "subnet_id" {
   description = "Subnet ID"
 }
